@@ -41,3 +41,21 @@ def has_overlap(index, row, column, direction, defend_grid) :
             if(defend_grid[row + num][column] != '_') :
                 overlap = True
     return overlap
+	
+def drop_bomb(defend_grid, attack_grid, bomb_row, bomb_column) :
+    if(defend_grid[bomb_row][bomb_column] == B) :
+        attack_grid[bomb_row][bomb_column] = 'O'
+        defend_grid[bomb_row][bomb_column] = 'O'
+    else :
+        attack_grid[bomb_row][bomb_column] = 'X'
+        defend_grid[bomb_row][bomb_column] = 'X'
+        
+def all_vessels_sunk(defend_grid) :
+    vessels_sunk = True
+    for row_index in range(0, GRID_HEIGHT) :
+        for column_index in range(0, GRID_WIDTH) :
+            if(defend_grid[row_index][column_index] != B) :
+                if(defend_grid[row_index][column_index] != 'O') :
+                    if(defend_grid[row_index][column_index] != 'X') :
+                        vessels_sunk = False
+    return vessels_sunk
